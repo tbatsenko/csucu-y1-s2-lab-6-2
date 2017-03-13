@@ -1,4 +1,6 @@
 from vigenere_cipher import VigenereCipher
+from vigenere_cipher import combine_character
+from vigenere_cipher import separate_character
 import unittest
 
 
@@ -18,19 +20,19 @@ class TestSquareProcessing(unittest.TestCase):
     @staticmethod
     def test_encode_spaces():
         cipher = VigenereCipher("TRAIN")
-        encoded = cipher.encoded("ENCODED IN PYTHON")
+        encoded = cipher.encode("ENCODED IN PYTHON")
         assert encoded == "XECWQXUIVCRKHWA"
 
     @staticmethod
     def test_encode_lowercase():
         cipher = VigenereCipher("TRain")
-        encoded = cipher.encoded("encoded in Python")
+        encoded = cipher.encode("encoded in Python")
         assert encoded == "XECWQXUIVCRKHWA"
 
     @staticmethod
     def test_combine_character():
-        assert VigenereCipher.combine_character("E", "T") == "X"
-        assert VigenereCipher.combine_character("N", "R") == "E"
+        assert combine_character("E", "T") == "X"
+        assert combine_character("N", "R") == "E"
 
     @staticmethod
     def test_extend_keyword():
@@ -40,8 +42,8 @@ class TestSquareProcessing(unittest.TestCase):
 
     @staticmethod
     def test_separate_character():
-        assert VigenereCipher.separate_character("X", "T") == "E"
-        assert VigenereCipher.separate_character("E", "R") == "N"
+        assert separate_character("X", "T") == "E"
+        assert separate_character("E", "R") == "N"
 
     @staticmethod
     def test_decode():
